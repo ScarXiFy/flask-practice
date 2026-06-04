@@ -3,7 +3,8 @@ from database import (
     create_table, 
     add_project, 
     get_projects,
-    delete_project
+    delete_project,
+    update_project
 )
 
 app = Flask(__name__)
@@ -43,6 +44,15 @@ def projects_page():
 @app.route("/projects/delete/<int:project_id>", methods=["POST"])
 def delete_project_route(project_id):
     delete_project(project_id)
+
+    return redirect("/projects")
+
+@app.route("/projects/edit/<int:project_id>", methods=["POST"])
+def edit_project_route(project_id):
+    updated_name = request.form.get("updated_project")
+
+    if updated_name:
+        update_project(project_id, updated_name)
 
     return redirect("/projects")
 

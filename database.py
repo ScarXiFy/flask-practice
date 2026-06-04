@@ -53,4 +53,16 @@ def delete_project(project_id):
 
     connection.commit()
     connection.close()
+
+def update_project(project_id, name):
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "UPDATE projects SET name = ? WHERE id = ?",
+        (name, project_id)
+    )
+
+    connection.commit()
+    connection.close()
     
