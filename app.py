@@ -4,7 +4,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    name = "Enrico"
+    return render_template("index.html", name=name)
 
 @app.route("/about")
 def about():
@@ -12,7 +13,12 @@ def about():
 
 @app.route("/projects")
 def projects():
-    return render_template("projects.html")
+    project_list = [
+        "Flask Practice",
+        "Carolinian Events",
+        "Aquatic Hatchery Monitoring System"
+    ]
+    return render_template("projects.html", projects=project_list)
 
 if __name__ == "__main__":
     app.run(debug=True)
