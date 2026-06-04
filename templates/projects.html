@@ -57,6 +57,10 @@ Projects | Flask Practice
                             </button>
                         </form>
                     </div>
+
+                    <small class ="text-muted">
+                        Created at: {{ project.created_at.strftime("%B %d, %Y %I:%M %p") }}
+                    </small>
                 </li>
             {% endfor %}
             </ul>

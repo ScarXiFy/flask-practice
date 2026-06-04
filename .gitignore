@@ -16,6 +16,7 @@ __pycache__/
 # Flask
 instance/
 .webassets-cache
+*.db
 
 # OS Files
 .DS_Store
