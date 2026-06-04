@@ -24,6 +24,15 @@ Projects
 <ul>
 {% for project in projects %}
     <li>{{ project[1] }}</li>
+
+    <form
+        action="/projects/delete/{{ project[0] }}"
+        method="POST"
+        style="display:inline;">
+
+        <button type="submit"> Delete </button>
+    
+    </form>
 {% endfor %}
 </ul>
 

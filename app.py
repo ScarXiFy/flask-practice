@@ -1,5 +1,10 @@
-from flask import Flask, render_template, request
-from database import create_table, add_project, get_projects
+from flask import Flask, render_template, request, redirect
+from database import (
+    create_table, 
+    add_project, 
+    get_projects,
+    delete_project
+)
 
 app = Flask(__name__)
 
@@ -34,6 +39,12 @@ def projects_page():
         "projects.html",
         projects=projects
     )
+
+@app.route("/projects/delete/<int:project_id>", methods=["POST"])
+def delete_project_route(project_id):
+    delete_project(project_id)
+
+    return redirect("/projects")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
