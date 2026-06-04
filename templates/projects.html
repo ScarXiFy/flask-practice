@@ -50,7 +50,8 @@ Projects | Flask Practice
 
                         <form
                             action="/projects/delete/{{ project.id }}"
-                            method="POST">
+                            method="POST"
+                            onsubmit="return confirm('Are you sure you want to delete this project?');">
 
                             <button type="submit" class="btn btn-danger">
                                 Delete

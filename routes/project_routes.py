@@ -22,7 +22,7 @@ def projects_page():
 
         flash("Project added successfully.")
 
-    project_list = Project.query.all()
+    project_list = Project.query.order_by(Project.created_at.desc()).all()
 
     return render_template("projects.html", projects=project_list)
 
