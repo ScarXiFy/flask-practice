@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Practice</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <h1>Hello Flask!</h1>
-    <p>My first Flask template.</p>
+{% block title %}
+Home
+{% endblock %}
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/projects">Projects</a>
-    </nav>
-</body>
-</html>
+{% block content %}
+<h1>Hello Flask!</h1>
+<p>My first Flask template.</p>
+{% endblock %}
