@@ -6,10 +6,13 @@ from database import (
     delete_project,
     update_project
 )
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
-
-app.secret_key = "dev-secret-key"
+app.secret_key = os.getenv("SECRET_KEY")
 
 create_table()
 
