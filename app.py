@@ -2,6 +2,11 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+projects = [
+    "Flask Practice",
+    "Carolinian Events"
+]
+
 @app.route("/")
 def home():
     name = "Enrico"
@@ -11,14 +16,19 @@ def home():
 def about():
     return render_template("about.html")
 
-@app.route("/projects")
-def projects():
-    project_list = [
-        "Flask Practice",
-        "Carolinian Events",
-        "Aquatic Hatchery Monitoring System"
-    ]
-    return render_template("projects.html", projects=project_list)
+@app.route("/projects", methods=["GET", "POST"])
+def projects_page():
+
+    if request.method == "POST":
+        project_name = request.form.get("project")
+
+        if project_name:
+            projects.append(project_name)
+
+    return render_template(
+        "projects.html",
+        projects=projects
+    )
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

@@ -5,12 +5,26 @@ Projects
 {% endblock %}
 
 {% block content %}
+
 <h1>Projects</h1>
 
+<form method="POST">
+    <input
+        type="text"
+        name="project"
+        placeholder="Enter project name">
+
+    <button type="submit">
+        Add Project
+    </button>
+</form>
+
+<hr>
+
 <ul>
-    {% for project in projects %}
-        <li>{{ project }}</li>
-    {% endfor %}
+{% for project in projects %}
+    <li>{{ project }}</li>
+{% endfor %}
 </ul>
 
 {% endblock %}
