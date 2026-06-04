@@ -1,55 +1,72 @@
 {% extends "base.html" %}
 
 {% block title %}
-Projects
+Projects | Flask Practice
 {% endblock %}
 
 {% block content %}
 
-<h1>Projects</h1>
+<div class="card shadow-sm">
+    <div class="card-body">
 
-<form method="POST">
-    <input
-        type="text"
-        name="project"
-        placeholder="Enter project name">
+        <h1 class="mb-4">Projects</h1>
 
-    <button type="submit">
-        Add Project
-    </button>
-</form>
+        <form method="POST" class="mb-4">
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="project"
+                    class="form-control"
+                    placeholder="Enter project name"
+                    required>
 
-<hr>
+                <button type="submit" class="btn btn-primary">
+                    Add Project
+                </button>
+            </div>
+        </form>
 
-<ul>
-{% for project in projects %}
-    <li>
-    <form
-        action="/projects/edit/{{ project[0] }}"
-        method="POST"
-        style="display:inline;">
+        {% if projects %}
+            <ul class="list-group">
+            {% for project in projects %}
+                <li class="list-group-item">
+                    <div class="d-flex gap-2">
+                        <form
+                            action="/projects/edit/{{ project[0] }}"
+                            method="POST"
+                            class="d-flex gap-2 flex-grow-1">
 
-        <input
-            type="text"
-            name="updated_project"
-            value="{{ project[1] }}">
+                            <input
+                                type="text"
+                                name="updated_project"
+                                value="{{ project[1] }}"
+                                class="form-control"
+                                required>
 
-        <button type="submit">
-            Save
-        </button>
-    </form>
+                            <button type="submit" class="btn btn-warning">
+                                Save
+                            </button>
+                        </form>
 
-    <form
-        action="/projects/delete/{{ project[0] }}"
-        method="POST"
-        style="display:inline;">
+                        <form
+                            action="/projects/delete/{{ project[0] }}"
+                            method="POST">
 
-        <button type="submit">
-            Delete
-        </button>
-    </form>
-</li>
-{% endfor %}
-</ul>
+                            <button type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <div class="alert alert-info mb-0">
+                No projects found. Add your first project.
+            </div>
+        {% endif %}
+
+    </div>
+</div>
 
 {% endblock %}
