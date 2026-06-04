@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from database import (
     create_table, 
     add_project, 
@@ -8,6 +8,8 @@ from database import (
 )
 
 app = Flask(__name__)
+
+app.secret_key = "dev-secret-key"
 
 create_table()
 
@@ -36,6 +38,8 @@ def projects_page():
 
     projects = get_projects()
 
+    flash("Project added successfully.")
+
     return render_template(
         "projects.html",
         projects=projects
@@ -45,6 +49,8 @@ def projects_page():
 def delete_project_route(project_id):
     delete_project(project_id)
 
+    flash("Project deleted successfully.")
+
     return redirect("/projects")
 
 @app.route("/projects/edit/<int:project_id>", methods=["POST"])
@@ -53,6 +59,8 @@ def edit_project_route(project_id):
 
     if updated_name:
         update_project(project_id, updated_name)
+
+    flash("Project updated successfully.")
 
     return redirect("/projects")
 
