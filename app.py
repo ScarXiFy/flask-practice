@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -19,6 +19,15 @@ def projects():
         "Aquatic Hatchery Monitoring System"
     ]
     return render_template("projects.html", projects=project_list)
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    submitted_name = None
+
+    if request.method == "POST":
+        submitted_name = request.form.get("name")
+
+    return render_template("contact.html", submitted_name=submitted_name)
 
 if __name__ == "__main__":
     app.run(debug=True)
