@@ -18,3 +18,26 @@ def create_table():
 
     connection.commit()
     connection.close()
+
+def add_project(name):
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "INSERT INTO projects (name) VALUES (?)",
+        (name,)
+    )
+
+    connection.commit()
+    connection.close()
+
+def get_projects():
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT id, name FROM projects")
+    projects = cursor.fetchall()
+
+    connection.close()
+
+    return projects

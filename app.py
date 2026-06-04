@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from database import create_table
+from database import create_table, add_project, get_projects
 
 app = Flask(__name__)
 
@@ -26,7 +26,9 @@ def projects_page():
         project_name = request.form.get("project")
 
         if project_name:
-            projects.append(project_name)
+            add_project(project_name)
+
+    projects = get_projects()
 
     return render_template(
         "projects.html",
